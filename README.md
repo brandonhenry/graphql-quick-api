@@ -40,11 +40,24 @@ export const typeDef = `
 `;
 ```
 
+#### API Stitching
+These files also contain a class that extends the `DataSource` object that comes from `ApolloServer`. When defining a Type, you can also setup what endpoints that Type needs to hit in order to resolve all of its fields. This class is instantiated and used inside of the resolvers that we export.
+
 #### Resolvers
 Inside of each type `.js` file, you will also find resolvers that are responsible for returning the data defined by the SDL in the exported `typeDef` variable.
 
-#### API Stitching
-These files also contain a class that extends the `DataSource` object that comes from `ApolloServer`. When defining a Type, you can also setup what endpoints that Type needs to hit in order to resolve all of its fields. This class is instantiated and used inside of the resolvers that we export.
+```js
+const authorAPI = new AuthorAPI();
+const authorResolvers = {
+  Query: {
+    author: () => authorAPI.getAuthor(),
+  },
+  Author: {
+    books: (_, {id}) => authorAPI.getBooks(id),
+  },
+};
+```
+
 
 ### Schema
 Your schema contains the exact fields and types that can be queried throughout your custom API. Inside of `schema.js`, you can define all the queries that the client can use to retrieve data from your GraphQL server.
