@@ -41,7 +41,33 @@ export const typeDef = `
 ```
 
 #### API Stitching
-These files also contain a class that extends the `DataSource` object that comes from `ApolloServer`. When defining a Type, you can also setup what endpoints that Type needs to hit in order to resolve all of its fields. This class is instantiated and used inside of the resolvers that we export.
+Type files also contain a class that extends the `DataSource` object that comes from `ApolloServer`. When defining a Type, you can also setup what endpoints that Type needs to hit in order to resolve all of its fields. This class is instantiated and used inside of the resolvers that we export.
+
+In this instance, we are importing the `RESTDataSource` from `apollo-server`. Here you can import other `DataSource` interfaces to properly connect to wherever the data for the Type you are defining exists.
+```js
+const { RESTDataSource } = require("apollo-datasource-rest");
+class AuthorAPI extends RESTDataSource {
+  constructor() {
+    super();
+    // rest data source base url
+    this.baseURL = "";
+  }
+
+  getAuthor(id) {
+    return {
+      id,
+      firstName: "Test",
+      lastName: "Test",
+      books: []
+    };
+  }
+
+  getBooks(id) {
+    return this.getAuthor(id).books;
+  }
+}
+
+```
 
 #### Resolvers
 Inside of each type `.js` file, you will also find resolvers that are responsible for returning the data defined by the SDL in the exported `typeDef` variable.
