@@ -111,5 +111,6 @@ module.exports = schema;
 There are many times where it can be hard to visualize your data and the graph it makes. That is why it is recommended to create a data graph that explores what your fields and types will look like.
 
 Here is an example data graph for the starter project using [Mind Mup](https://app.mindmup.com/). By publishing your map via Mind Mup, you can save the exported graph as a `.mhtml` file to keep it locally. Example in `graphql-api-starter/server/schema-graph.mhtml`
+
 ![Schema Graph](/graphql-api-starter/server/schema-graph.png "Schema Graph")
 
