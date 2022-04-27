@@ -3,8 +3,8 @@ const { makeExecutableSchema } = require("@graphql-tools/schema");
 const { gql } = require("graphql-tag");
 
 // import all defined types
-const { authorResolvers, Author, AuthorAPI } = require("./types/author");
-const { bookResolvers, Book, BookAPI } = require("./types/book");
+const { authorResolvers, Author } = require("./types/author");
+const { bookResolvers, Book } = require("./types/book");
 
 // If you had Query fields not associated with a
 // specific type you could put them here
